@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:metadata>
+	<f:viewAction action="#{clientMB.initForm}" />
+</f:metadata>
+<h:head>
+	<title>Modifier client</title>
+</h:head>
+
+
+<h:body>
+	<p:tabMenu activeIndex="#{param.i}">
+		<p:menuitem value="Client" outcome="ajouter" icon="pi pi-star">
+			<f:param name="i" value="0" />
+		</p:menuitem>
+		<p:menuitem value="Compte" outcome="ajouter_compte"
+			icon="pi pi-search">
+			<f:param name="i" value="1" />
+		</p:menuitem>
+		<p:menuitem value="Transaction" outcome="ajouter_Transaction"
+			icon="pi pi-file">
+			<f:param name="i" value="2" />
+		</p:menuitem>
+	</p:tabMenu>
+	<br />
+	<br />
+
+	<p:separator />
+	<p:tab title="Modifier ce client">
+		<p:panel header="Modifier ce client">
+			<center>
+				<h:graphicImage value="/resource/images/update.png" width="100"
+					height="100" />
+				<br />
+				<br />
+				<br /> <br />
+				<h:form>
+					<table border="0">
+						<tr>
+							<td><p:outputLabel value="CIN : " /></td>
+							<td><p:inputText value="#{clientMB.selectedClient.cin}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Nom :" /></td>
+							<td><p:inputText value="#{clientMB.selectedClient.nom}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Prenom : " /></td>
+							<td><p:inputText value="#{clientMB.selectedClient.prenom}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Adresse : " /></td>
+							<td><p:inputText value="#{clientMB.selectedClient.adresse}"
+									cols="20" rows="5" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Num telephone : " /></td>
+							<td><p:inputText value="#{clientMB.selectedClient.tel}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Email : " /></td>
+							<td><p:inputText value="#{clientMB.selectedClient.email}" /></td>
+						</tr>
+					</table>
+
+					<p:commandButton value="Modifier" action="#{clientMB.modifier}" />
+					<p:button value="Annuler" outcome="ajouter" />
+				</h:form>
+			</center>
+		</p:panel>
+	</p:tab>
+
+
+</h:body>
+
+
+</html>
+
+

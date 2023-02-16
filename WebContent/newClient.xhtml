@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html">
+<h:head> 
+    <title>Creation d'un nouveau client</title>
+  </h:head>
+  <h:body>
+    <h1>Creation d'un nouveau client</h1>
+    <hr/>
+    <h:outputText value="#{clientController.error}"/>
+    <h:form>
+      <table border="0">
+      <tr>
+        <td><h:outputLabel value="CIN : "/></td>
+        <td><h:inputText value="#{clientController.cl.cin}"/></td>
+      </tr>
+      <tr>
+        <td><h:outputLabel value="Nom :"/></td>
+        <td><h:inputText value="#{clientController.cl.nom}"/></td>
+      </tr>
+      <tr>
+        <td><h:outputLabel value="Prenom : "/></td>
+        <td><h:inputText value="#{clientController.cl.prenom}"/></td>
+      </tr>
+      <tr>
+        <td><h:outputLabel value="Adresse : "/></td>
+        <td><h:inputTextarea value="#{clientController.cl.adresse}" cols="20" rows="5"/></td>
+      </tr>
+      <tr>
+        <td><h:outputLabel value="Num telephone : "/></td>
+        <td><h:inputText value="#{clientController.cl.tel}"/></td>
+      </tr>
+      <tr>
+        <td><h:outputLabel value="Email : "/></td>
+        <td><h:inputText value="#{clientController.cl.email}"/></td>
+      </tr>
+    </table>
+    <h:commandButton value="Créer un client" action="#{clientController.doCreateClient}"/>
+  	
+		<br></br>
+		<h:commandLink action="#{clientController.doListClient}">
+         Liste de tous les clients 
+      </h:commandLink>
+   
+   
+    </h:form>
+        
+  </h:body>
+</html>

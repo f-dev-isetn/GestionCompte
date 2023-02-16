@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:metadata>
+<!-- <f:viewAction action="#{clientMB.initForm}" /> -->
+	<f:viewAction action="#{clientMB.initListeClients}" />
+</f:metadata>
+
+<h:head>
+	<title>Nouveau client</title>
+	<h:outputStylesheet name="/resource/css/styles.css" /> 
+</h:head>
+
+
+<h:body>
+
+	<p:tabMenu activeIndex="#{param.i}">
+		<p:menuitem value="Client" outcome="ajouter" icon="pi pi-star">
+			<f:param name="i" value="0" />
+		</p:menuitem>
+		<p:menuitem value="Compte" outcome="ajouter_compte"
+			icon="pi pi-search">
+			<f:param name="i" value="1" />
+		</p:menuitem>
+		<p:menuitem value="Transaction" outcome="ajouter_Transaction"
+			icon="pi pi-file">
+			<f:param name="i" value="2" />
+		</p:menuitem>
+	</p:tabMenu>
+	<br />
+	<br />
+
+	<hr />
+	<h:form id="f1">
+<!-- <p:messages id="messages" autoUpdate="true"/> -->
+	<p:growl id="message" sticky="true"/>
+
+		<p:tab title="Creation d'un nouveau client">
+			<p:panel header="Creation d'un nouveau client">
+				<center>
+					<h:graphicImage value="/resource/images/client.png" width="100"
+						height="100" />
+					<br />
+					<table border="0">
+						<tr>
+							<p:message for="cin" />
+						</tr>
+						<tr>
+							<p:message for="nom" />
+						</tr>
+
+						<tr>
+							<td><p:outputLabel value="CIN : " /></td>
+							<td><p:inputText id="cin" required="true" label="CIN"
+									value="#{clientMB.client.cin}">
+									<f:validateDoubleRange minimum="00000001" maximum="09999999" />
+								</p:inputText></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Nom :" /></td>
+							<td><p:inputText id="nom" required="true"
+									validatorMessage="Valeur erronnée"
+									value="#{clientMB.client.nom}" label="Nom : " >
+									<f:validateRegex pattern="^[a-zA-Z]+$" />
+									<f:validateLength minimum="3" />
+								</p:inputText>
+									<p:message for="nom"  display="text" style="color:red" />
+									
+								</td>
+								<h:message for="nom" style="color:red" />
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Prenom : " /></td>
+							<td><p:inputText id="prenom" required="true"
+									value="#{clientMB.client.prenom}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Adresse : " /></td>
+							<td><p:inputText id="adr" required="true"
+									value="#{clientMB.client.adresse}" cols="20" rows="5" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Num telephone : " /></td>
+							<td><p:inputText id="tel" required="true"
+									value="#{clientMB.client.tel}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Email : " /></td>
+							<td><p:inputText value="#{clientMB.client.email}" /></td>
+						</tr>
+					</table>
+					<br /> <br />
+					<p:commandButton value="Créer un client" action="#{clientMB.add}"
+						validateClient="true" update="message"/>
+					<p:button outcome="ajouter" value="Annuler" />
+				</center>
+			</p:panel>
+		</p:tab>
+		<!-- <p:messages autoUpdate="true"  closable="true" />  -->
+<!-- 		<h:messages globalOnly="true"  rendered="#{component.namingContainer.submitted}"/>.
+ -->	</h:form>
+	<br />
+	<br />
+	<p:tab title="Liste des clients">
+		<p:panel header="Liste des clients">
+
+			<p:dataTable value="#{clientMB.listeClients}" var="clt" border="1">
+				<p:column>
+					<!-- column header -->
+					<f:facet name="header">CIN</f:facet>
+					<!-- row record -->
+					<h:outputText value="#{clt.cin}" />
+				</p:column>h:column>
+    			
+    			<p:column>
+					<f:facet name="header">Nom</f:facet>
+					<h:outputText value="#{clt.nom}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">Prenom</f:facet>
+					<h:outputText value="#{clt.prenom}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Email</f:facet>
+					<h:outputText value="#{clt.email}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Tel</f:facet>
+					<h:outputText value="#{clt.tel}" />
+				</p:column>
+
+				<p:column headerText="Actions" style="text-align: center">
+					<h:button icon="ui-icon-disk" title="Modifier" outcome="modifier">
+						<f:param name="code" value="#{clt.cin}" />
+					</h:button>
+				</p:column>
+
+				<p:column headerText="Actions" style="text-align: center">
+					<h:button icon="ui-icon-closethick" title="Supprimer"
+						outcome="supprimer">
+						<f:param name="code" value="#{clt.cin}" />
+					</h:button>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</p:tab>
+</h:body>
+</html>

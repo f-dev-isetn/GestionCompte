@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view contentType="text/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h:form>
+		<h:outputLabel value="CIN : ">
+		</h:outputLabel> : 
+		<h:selectOneMenu    
+		    onchange="submit()"
+            valueChangeListener="#{clientController.localeChanged}"      effect="fade"	
+            value="clientController.selectedCountry">
+   			<f:selectItems  value="#{clientController.clList}" var="c" itemLabel="#{c.cin} #{c.nom} #{c.prenom}" itemValue="#{c.cin}" />
+    	</h:selectOneMenu>
+   		<br></br>
+   		<br></br>
+    		Client : 		 
+         <h:outputText id="country" value="#{clientController.selectedCountry}"
+            size="20" />
+   <br/><br/>
+		<br></br>
+		<h:commandLink action="#{clientController.doListClient}">
+         Liste de tous les clients 
+      </h:commandLink>
+   <!--   
+        <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" />  
+   	 <p:dialog header="Selected Values" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg">  
+     <h:panelGrid columns="1" id="display">  
+     <h:outputText value="Value : #{c.nom}" rendered="#{not empty c}"/>  
+     </h:panelGrid>  
+     </p:dialog>
+     -->
+	</h:form>
+</body>
+</f:view>
+</html>

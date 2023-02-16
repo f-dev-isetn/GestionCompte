@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:comp="http://primefaces.org/ui">
+
+<f:metadata>
+	<f:viewAction action="#{clientMB.initListeClients}" />
+</f:metadata>
+<h:head>
+	<title>Liste des clients</title>
+</h:head>
+<h:body>
+	<h1>Liste des clients</h1>
+	<hr />
+	<p:dataTable
+		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="10,20,50,100" paginator="true"
+		paginatorPosition="bottom" rows="10" widgetVar="TableClient"
+		value="#{clientMB.listeClients}" var="bk">
+
+		<!-- <f:facet name="header">    
+    <p:outputPanel>    
+        <h:outputText value="Search all fields:" />    
+        <p:inputText id="globalFilter" onkeyup="TableClient.filter()" style="width:150px" />    
+    </p:outputPanel>    
+</f:facet>  
+    sortBy="#{bk.nom}"  sur la colonne-->
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="CIN" />
+			</f:facet>
+			<h:outputText value="#{bk.cin}" />
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Nom" />
+			</f:facet>
+			<h:outputText value="#{bk.nom}" />
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Prenom" />
+			</f:facet>
+			<h:outputText value="#{bk.prenom}" />
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Adresse" />
+			</f:facet>
+			<h:outputText value="#{bk.adresse}" />
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Telephone" />
+			</f:facet>
+			<h:outputText value="#{bk.tel}" />
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Email" />
+			</f:facet>
+			<h:outputText value="#{bk.email}" />
+		</p:column>
+	</p:dataTable>
+
+
+	<!--   <h:commandLink action="#{clientController.doNew}">
+         Creer un nouveau client 
+      </h:commandLink>
+      <br></br>
+      <h:commandLink action="#{clientController.doList}">
+         Afficher liste de sélection CIN 
+      </h:commandLink> -->
+
+	<h:form>
+		<div id="bar">
+			<p:panel id="basic3" header="Soldes des comptes"
+				footer="Sales value for products representing the selected category, sales period and market.
+"
+				style="margin-top:20px">
+				<p:chart id="chart" type="bar" model="#{chartBean.barModel}"
+					responsive="true" />
+			</p:panel>
+		</div>
+	</h:form>
+	<!-- <p:growl id="growl" showDetail="true" sticky="true" />
+	<p:chart id="barChart" value="#{chartBean.barModel}"
+		title="Account Balances" legendPosition="ne" animate="true"
+		showDatatip="true" showPointLabels="true" /> -->
+
+</h:body>
+
+</html>
